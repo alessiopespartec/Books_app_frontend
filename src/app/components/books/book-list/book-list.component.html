@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-12">
+    <h2 class="mb-3">Book List</h2>
+    <div class="mb-3 d-flex justify-content-start">
+      <button
+        class="btn btn-outline-primary btn-sm"
+        (click)="navigateToAddBookPage()"
+      >
+        Add a new Book
+      </button>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Title</th>
+          <th scope="col">Year</th>
+          <th scope="col">Authors</th>
+          <th scope="col">Publisher</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="books$ | async as response">
+        <tr *ngFor="let book of response.data" class="align-middle">
+          <th scope="row">{{ book.id }}</th>
+          <td>
+            <span class="book-name" (click)="onBookClick(book.id)">{{
+              book.title
+            }}</span>
+          </td>
+          <td>{{ book.year | date : "y" }}</td>
+          <td>
+            <ng-container
+              *ngIf="book.authors && book.authors.length > 0; else noAuthors"
+            >
+              <ng-container
+                *ngFor="let author of book.authors; let isLast = last"
+                ><span class="author-name" (click)="onAuthorClick(author.id)">
+                  {{ author.firstName }} {{ author.lastName }} </span
+                ><ng-container *ngIf="!isLast">,</ng-container>
+              </ng-container>
+            </ng-container>
+            <ng-template #noAuthors>---</ng-template>
+          </td>
+          <td>
+            <span
+              class="publisher-name"
+              (click)="onPublisherClick(book.publisher.id)"
+              >{{ book.publisher.name }}</span
+            >
+          </td>
+          <td>
+            <div class="d-flex justify-content-start">
+              <button
+                class="btn btn-primary btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
+                (click)="onEditClick(book.id)"
+              >
+                <span class="material-icons" style="font-size: 1.3rem"
+                  >edit</span
+                >
+              </button>
+              <button
+                class="btn btn-danger btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
+                (click)="onDeleteClick(book.id)"
+              >
+                <span class="material-icons" style="font-size: 1.3rem"
+                  >delete</span
+                >
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

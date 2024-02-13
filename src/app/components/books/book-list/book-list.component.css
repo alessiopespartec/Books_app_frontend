@@ -1,0 +1,13 @@
+.book-name,
+.author-name,
+.publisher-name {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.book-name:hover,
+.author-name:hover,
+.publisher-name:hover {
+  text-decoration: underline;
+}
