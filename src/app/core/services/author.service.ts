@@ -5,8 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class BookService {
-  private url = environment.apiBaseUrl + '/books';
+export class AuthorService {
+  private url = environment.apiBaseUrl + '/authors';
   private username: string = environment.auth.username;
   private password: string = environment.auth.password;
 
@@ -16,13 +16,13 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
-  getAllBooks() {
-    console.log('Getting all books from ', this.url);
+  getAllAuthors() {
+    console.log('Getting all authors from ', this.url);
     return this.http.get(this.url, { headers: this.httpHeaders });
   }
 
-  getBookById(id: string | number) {
-    console.log('Getting book from ', this.url + '/' + id);
+  getAuthorById(id: string | number) {
+    console.log('Getting author from ', this.url + '/' + id);
     return this.http.get(this.url + '/' + id, { headers: this.httpHeaders });
   }
 }

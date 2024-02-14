@@ -13,10 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BookDetailComponent } from './components/books/book-detail/book-detail.component';
 import { NavbarComponent } from './core/layout/navbar/navbar.component';
 
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { booksReducer } from './components/books/books.reducer';
-import { BookEffects } from './components/books/books.effects';
+import { AuthorListComponent } from './components/authors/author-list/author-list.component';
+import { AuthorDetailComponent } from './components/authors/author-detail/author-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,15 +22,10 @@ import { BookEffects } from './components/books/books.effects';
     BookListComponent,
     BookDetailComponent,
     NavbarComponent,
+    AuthorListComponent,
+    AuthorDetailComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    HttpClientModule,
-    StoreModule.forRoot({ books: booksReducer }),
-    EffectsModule.forRoot([BookEffects]),
-  ],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })

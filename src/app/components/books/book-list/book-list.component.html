@@ -20,7 +20,7 @@
           <th scope="col">Actions</th>
         </tr>
       </thead>
-      <tbody *ngIf="books$ | async as response">
+      <tbody *ngIf="data as response">
         <tr *ngFor="let book of response.data" class="align-middle">
           <th scope="row">{{ book.id }}</th>
           <td>

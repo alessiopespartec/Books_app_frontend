@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../../core/services/book.service';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import * as BookActions from '../books.actions';
-import { selectBooks } from '../books.selectors';
 
 @Component({
   selector: 'app-book-list',
@@ -12,40 +7,30 @@ import { selectBooks } from '../books.selectors';
   styleUrl: './book-list.component.css',
 })
 export class BookListComponent implements OnInit {
-  books$!: Observable<any>;
+  data: any;
 
-  constructor(
-    private bookService: BookService,
-    private router: Router,
-    private store: Store
-  ) {}
+  constructor(private service: BookService) {}
 
-  ngOnInit() {
-    this.store.dispatch(BookActions.loadBooks());
-    this.books$ = this.store.select(selectBooks);
-  }
-
-  /*
-  loadBooks() {
-    this.bookService.getBooks().subscribe(
+  ngOnInit(): void {
+    this.service.getAllBooks().subscribe(
       (res) => {
-        this.books = res.data;
-        console.log('Data', res.data);
+        console.log('Getting Data: ', res);
+        this.data = res;
       },
-      (error) => {
-        console.log('Ops, error here:', error);
+      (err) => {
+        console.log('Error here: ', err);
+      },
+      () => {
+        console.log('OnInit completed!');
       }
     );
   }
-  */
 
   navigateToAddBookPage() {
     console.log('To Add Book Page clicked!');
   }
 
   onBookClick(id: number) {
-    this.router.navigate(['/books', id]);
-
     console.log('Book clicked on ID: ', id);
   }
 
