@@ -1,1 +1,43 @@
-<p>book-detail works!</p>
+<div class="row">
+  <div class="col-12">
+    @if (data.data; as book) {
+    <h2 class="mb-3">{{ book.title }}</h2>
+    <hr>
+    <p>
+      Written by: @for (author of book.authors; track author.id; let last =
+      $last) {
+      <a class="author-name" href="/authors/{{ author.id }}"
+        >{{ author.firstName }} {{ author.lastName }}</a
+      >
+      @if (!last) {
+      <span>, </span>
+      } @else {
+      <span>.</span>
+      } } @empty {
+      <span>No author found.</span>
+      }
+    </p>
+    @if (book.publisher.name) {
+    <p>&copy;
+      <a class="publisher-name" href="/publishers/{{ book.publisher.id }}"
+        >{{ book.publisher.name }}.</a
+      >
+    </p>
+    } @else {
+    <p>No publisher found.</p>
+    }
+    <p class="text-muted">
+      Release year: @if (book.year) {
+      <span>{{ book.year | date : "longDate" }}.</span>
+      } @else {
+      <span>No publisher found.</span>
+      }
+    </p>
+    } @else if (data.error && data.error.message) {
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Ops..!</h4>
+      <p>Error {{ data.error.status }}! {{ data.error.message }}</p>
+    </div>
+    }
+  </div>
+</div>

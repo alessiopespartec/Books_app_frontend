@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-12">
+    @if (data.data; as publisher) {
+    <h2 class="mb-3">{{ publisher.name }}</h2>
+    <hr />
+    @if (publisher.books.length > 0) {
+    <h5>Books:</h5>
+    <ul>
+      @for (book of publisher.books; track book.id) {
+      <li>
+        <a class="book-name" href="/books/{{ book.id }}">{{ book.title }}</a>
+        <span> ({{ book.year | date : "yyyy" }}) </span>
+        @if (book.authors.length > 0) {
+        <span>by </span>
+        @for (author of book.authors; track author.id; let isLast = $last) {
+        <a class="author-name" href="/authors/{{author.id}}">{{ author.firstName }} {{ author.lastName }}</a>
+        @if (!isLast) {
+        <span>, </span>
+        } @else {
+        <span>.</span>
+        } } }
+      </li>
+      }
+    </ul>
+    } @else {
+    <p class="text-muted">No book found.</p>
+    } }
+  </div>
+</div>

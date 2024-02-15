@@ -6,23 +6,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class BookService {
-  private url = environment.apiBaseUrl + '/books';
-  private username: string = environment.auth.username;
-  private password: string = environment.auth.password;
-
-  private httpHeaders = new HttpHeaders({
-    Authorization: 'Basic ' + btoa(`${this.username}:${this.password}`),
-  });
+  private url: string = environment.apiBaseUrl + '/books';
 
   constructor(private http: HttpClient) {}
 
   getAllBooks() {
     console.log('Getting all books from ', this.url);
-    return this.http.get(this.url, { headers: this.httpHeaders });
+    return this.http.get(this.url);
   }
 
   getBookById(id: string | number) {
     console.log('Getting book from ', this.url + '/' + id);
-    return this.http.get(this.url + '/' + id, { headers: this.httpHeaders });
+    return this.http.get(this.url + '/' + id);
   }
 }

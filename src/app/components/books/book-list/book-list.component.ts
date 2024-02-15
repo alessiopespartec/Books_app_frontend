@@ -12,18 +12,15 @@ export class BookListComponent implements OnInit {
   constructor(private service: BookService) {}
 
   ngOnInit(): void {
-    this.service.getAllBooks().subscribe(
-      (res) => {
+    this.service.getAllBooks().subscribe({
+      next: (res: {}) => {
         console.log('Getting Data: ', res);
         this.data = res;
       },
-      (err) => {
+      error: (err: {}) => {
         console.log('Error here: ', err);
       },
-      () => {
-        console.log('OnInit completed!');
-      }
-    );
+    });
   }
 
   navigateToAddBookPage() {

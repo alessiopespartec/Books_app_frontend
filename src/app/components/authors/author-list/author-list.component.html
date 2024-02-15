@@ -4,30 +4,34 @@
     <div class="mb-3 d-flex justify-content-start">
       <button class="btn btn-outline-primary btn-sm">Add a new Author</button>
     </div>
+    @if (data.data; as authors) {
     <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
+          <th scope="col">Name</th>
           <th scope="col">Books</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
-      <tbody *ngIf="data.data as authors">
-        <tr *ngFor="let author of authors" class="align-middle">
+
+      <tbody>
+        @for (author of authors; track author.id) {
+        <tr class="align-middle">
           <th scope="row">{{ author.id }}</th>
           <td>
-            {{ author.firstName }}
+            <a class="author-name" href="/authors/{{ author.id }}"
+              >{{ author.firstName }} {{ author.lastName }}</a
+            >
           </td>
-          <td>{{ author.lastName }}</td>
           <td>
-            ({{ author.books.length }})
-            <span *ngFor="let book of author.books; last as isLast">
-              {{ book.title }}
-
-              <span *ngIf="!isLast">, </span>
-            </span>
+            @for (book of author.books; track book.id; let isLast = $last) {
+            <a class="book-name" href="/books/{{ book.id }}">{{
+              book.title
+            }}</a>
+            @if (!isLast) {
+            <span>, </span>
+            } }
           </td>
           <td>
             <div class="d-flex justify-content-start">
@@ -52,7 +56,9 @@
             </div>
           </td>
         </tr>
+        }
       </tbody>
     </table>
+    }
   </div>
 </div>

@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-12">
+    <h2 class="mb-3">Publisher List</h2>
+    <div class="mb-3 d-flex justify-content-start">
+      <button class="btn btn-outline-primary btn-sm">
+        Add a new Publisher
+      </button>
+    </div>
+    @if (data.data; as publishers) {
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Books</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (publisher of publishers; track publisher.id) {
+        <tr class="align-middle">
+          <th scope="col">{{ publisher.id }}</th>
+          <td>
+            <a class="publisher-name" href="/publishers/{{ publisher.id }}">
+              {{ publisher.name }}
+            </a>
+          </td>
+          <td>
+            @if (publisher.books.length > 0) { @for (book of publisher.books; track
+            book.id) {
+            <ul>
+              <li>
+                <a class="book-name" href="/books/{{ book.id }}">{{
+                  book.title
+                }}</a>
+                <span> ({{ book.year | date : "yyyy" }}) </span>
+                @if (book.authors.length > 0) {
+                    <span>by </span>
+                    @for (author of book.authors; track author.id; let isLast = $last) {
+                        <a class="author-name">{{author.firstName}} {{author.lastName}}</a>
+                        @if (!isLast) {
+                            <span>, </span>
+                        } @else {
+                            <span>.</span>
+                        }
+                    }
+                }
+              </li>
+            </ul>
+            } } @else {
+            <span class="text-muted">---</span>
+            }
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }
+  </div>
+</div>

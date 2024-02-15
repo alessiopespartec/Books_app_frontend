@@ -8,25 +8,31 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './book-detail.component.css',
 })
 export class BookDetailComponent implements OnInit {
-  id = this.router.snapshot.paramMap.get('id');
+  id!: null | string;
   data: any;
 
-  constructor(private router: ActivatedRoute, private service: BookService) {}
+  constructor(
+    private router: ActivatedRoute,
+    private service: BookService
+  ) { }
 
   ngOnInit(): void {
+    this.id = this.router.snapshot.params['id'];
+
     if (this.id == null) {
       console.log('ID cannot be null');
       return;
     }
-    this.service.getBookById(this.id).subscribe(
-      (res) => {
+    
+    this.service.getBookById(this.id).subscribe({
+      next: (res: {}) => {
         console.log('Data: ', res);
         this.data = res;
       },
-      (err) => {
+      error: (err: {}) => {
         console.log('Error here: ', err);
+        this.data = err;
       },
-      () => console.log('Getting data completed!')
-    );
+    });
   }
 }

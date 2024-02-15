@@ -1,4 +1,25 @@
-<p>author-detail works!</p>
-<div class="container" *ngIf="data.data as author">
-  <p>{{ author.firstName }} {{ author.lastName }}</p>
+<div class="row">
+  <div class="col-12">
+    @if (data.data; as author) {
+    <h2 class="mb-3">{{ author.firstName }} {{ author.lastName }}</h2>
+    <hr>
+    @if (author.books.length > 0) {
+    <h5>Books:</h5>
+    <ul>
+      @for (book of author.books; track book.year) {
+      <li>
+        <a class="book-name" href="/books/{{ book.id }}"> {{ book.title }}</a>
+        ({{ book.year | date : "yyyy" }}) &copy;
+        <a class="publisher-name" href="/publishers/{{ book.publisher.id }}"
+          >{{ book.publisher.name }}
+        </a>
+      </li>
+      }
+    </ul>
+    } @else {
+    <p class="text-muted">
+      No book assigned to {{ author.firstName }} {{ author.lastName }}.
+    </p>
+    } }
+  </div>
 </div>
