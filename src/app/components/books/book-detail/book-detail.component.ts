@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../../core/services/book.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-detail',
@@ -12,18 +12,19 @@ export class BookDetailComponent implements OnInit {
   data: any;
 
   constructor(
-    private router: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private service: BookService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.id = this.router.snapshot.params['id'];
+    this.id = this.activatedRoute.snapshot.params['id'];
 
     if (this.id == null) {
       console.log('ID cannot be null');
       return;
     }
-    
+
     this.service.getBookById(this.id).subscribe({
       next: (res: {}) => {
         console.log('Data: ', res);
@@ -32,6 +33,11 @@ export class BookDetailComponent implements OnInit {
       error: (err: {}) => {
         console.log('Error here: ', err);
         this.data = err;
+        /*
+        this.router.navigate(['/not-found']).then(() => {
+          window.location.reload();
+        });
+        */
       },
     });
   }

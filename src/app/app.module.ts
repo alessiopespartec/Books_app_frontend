@@ -3,6 +3,7 @@ import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,9 @@ import { AuthInterceptor } from './core/interceptors/AuthInterceptor';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { PublisherListComponent } from './components/publishers/publisher-list/publisher-list.component';
 import { PublisherDetailComponent } from './components/publishers/publisher-detail/publisher-detail.component';
+import { LoginComponent } from './components/login/login.component';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { BookEditComponent } from './components/books/book-edit/book-edit.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +40,17 @@ import { PublisherDetailComponent } from './components/publishers/publisher-deta
     NotFoundPageComponent,
     PublisherListComponent,
     PublisherDetailComponent,
+    LoginComponent,
+    UserListComponent,
+    BookEditComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     provideClientHydration(),
     provideHttpClient(withInterceptors([AuthInterceptor])),

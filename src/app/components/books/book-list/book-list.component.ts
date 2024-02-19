@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../../core/services/book.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
@@ -9,7 +10,7 @@ import { BookService } from '../../../core/services/book.service';
 export class BookListComponent implements OnInit {
   data: any;
 
-  constructor(private service: BookService) {}
+  constructor(private router: Router, private service: BookService) {}
 
   ngOnInit(): void {
     this.service.getAllBooks().subscribe({
@@ -27,23 +28,19 @@ export class BookListComponent implements OnInit {
     console.log('To Add Book Page clicked!');
   }
 
-  onBookClick(id: number) {
-    console.log('Book clicked on ID: ', id);
-  }
-
-  onAuthorClick(id: number) {
-    console.log('Author clicked on ID: ', id);
-  }
-
-  onPublisherClick(id: number) {
-    console.log('Publisher clicked on ID: ', id);
-  }
-
-  onEditClick(id: number) {
-    console.log('Edit button clicked on ID: ', id);
-  }
-
   onDeleteClick(id: number) {
     console.log('Delete button clicked on ID: ', id);
+    if (window.confirm('Do you really want to delete this book?')) {
+      this.service.deleteBook(id).subscribe({
+        next: (res: {}) => {
+          console.log(`Book with ID ${id} deleted successfully!`);
+          console.log(res);
+          window.location.reload();
+        },
+        error: (err: {}) => {
+          console.error('Ops, error deleting book: ', err);
+        },
+      });
+    }
   }
 }

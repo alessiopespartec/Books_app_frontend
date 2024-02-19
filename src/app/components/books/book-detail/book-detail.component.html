@@ -2,7 +2,7 @@
   <div class="col-12">
     @if (data.data; as book) {
     <h2 class="mb-3">{{ book.title }}</h2>
-    <hr>
+    <hr />
     <p>
       Written by: @for (author of book.authors; track author.id; let last =
       $last) {
@@ -18,7 +18,8 @@
       }
     </p>
     @if (book.publisher.name) {
-    <p>&copy;
+    <p>
+      &copy;
       <a class="publisher-name" href="/publishers/{{ book.publisher.id }}"
         >{{ book.publisher.name }}.</a
       >
@@ -33,10 +34,10 @@
       <span>No publisher found.</span>
       }
     </p>
-    } @else if (data.error && data.error.message) {
+    } @else {
     <div class="alert alert-success" role="alert">
       <h4 class="alert-heading">Ops..!</h4>
-      <p>Error {{ data.error.status }}! {{ data.error.message }}</p>
+      <p>Error {{ data.status }}! {{ data.message }}</p>
     </div>
     }
   </div>

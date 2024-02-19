@@ -2,12 +2,9 @@
   <div class="col-12">
     <h2 class="mb-3">Book List</h2>
     <div class="mb-3 d-flex justify-content-start">
-      <button
-        class="btn btn-outline-primary btn-sm"
-        (click)="navigateToAddBookPage()"
-      >
+      <a class="btn btn-outline-primary btn-sm" href="/books/new">
         Add a new Book
-      </button>
+      </a>
     </div>
     <table class="table table-hover">
       <thead>
@@ -25,36 +22,36 @@
         <tr class="align-middle">
           <th scope="row">{{ book.id }}</th>
           <td>
-            <a class="book-name" (click)="onBookClick(book.id)" href="/books/{{book.id}}">{{
+            <a class="book-name" href="/books/{{ book.id }}">{{
               book.title
             }}</a>
           </td>
           <td>{{ book.year | date : "y" }}</td>
           <td>
-            @if (book.authors && book.authors.length > 0) {
-            @for (author of book.authors; track author.id; let isLast = $last) {
-            <a href="/authors/{{author.id}}"><span class="author-name" (click)="onAuthorClick(author.id)">
-            {{ author.firstName }} {{ author.lastName }}</span
-            ></a>
+            @if (book.authors && book.authors.length > 0) { @for (author of
+            book.authors; track author.id; let isLast = $last) {
+            <a href="/authors/{{ author.id }}"
+              ><span class="author-name">
+                {{ author.firstName }} {{ author.lastName }}</span
+              ></a
+            >
             @if (!isLast) {<span>, </span>} } }
           </td>
           <td>
-            <a href="/publishers/{{book.publisher.id}}"><span
-              class="publisher-name"
-              (click)="onPublisherClick(book.publisher.id)"
-              >{{ book.publisher.name }}</span
-            ></a>
+            <a href="/publishers/{{ book.publisher.id }}"
+              ><span class="publisher-name">{{ book.publisher.name }}</span></a
+            >
           </td>
           <td>
             <div class="d-flex justify-content-start">
-              <button
+              <a
                 class="btn btn-primary btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
-                (click)="onEditClick(book.id)"
+                href="/books/edit/{{ book.id }}"
               >
                 <span class="material-icons" style="font-size: 1.3rem"
                   >edit</span
                 >
-              </button>
+              </a>
               <button
                 class="btn btn-danger btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
                 (click)="onDeleteClick(book.id)"

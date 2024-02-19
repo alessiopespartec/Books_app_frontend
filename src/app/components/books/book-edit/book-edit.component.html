@@ -1,0 +1,50 @@
+<!-- book-edit.component.html -->
+<div class="container mt-3">
+  <h2>{{ bookId ? "Edit" : "New" }} Book</h2>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="title" class="form-label">TItle</label>
+      <input
+        type="text"
+        id="title"
+        class="form-control"
+        formControlName="title"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="year" class="form-label">Year</label>
+      <input
+        type="date"
+        id="year"
+        class="form-control"
+        formControlName="year"
+      />
+    </div>
+
+    <!-- Authors -->
+    <div class="mb-3">
+      <label class="form-label">Author</label>
+      <select multiple class="form-select" formControlName="authorIds">
+        @for (author of authorsList; track author.id) {
+        <option [value]="author.id">
+          {{ author.firstName }} {{ author.lastName }}
+        </option>
+        }
+      </select>
+    </div>
+
+    <!-- Publisher -->
+    <div class="mb-3">
+      <label class="form-label">Publisher</label>
+      <select class="form-select" formControlName="publisherId">
+        <option *ngFor="let publisher of publishersList" [value]="publisher.id">
+          {{ publisher.name }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      {{ bookId ? "Edit" : "Create" }}
+    </button>
+  </form>
+</div>

@@ -7,15 +7,24 @@ import { AuthorDetailComponent } from './components/authors/author-detail/author
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { PublisherListComponent } from './components/publishers/publisher-list/publisher-list.component';
 import { PublisherDetailComponent } from './components/publishers/publisher-detail/publisher-detail.component';
+import { LoginComponent } from './components/login/login.component';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { BookEditComponent } from './components/books/book-edit/book-edit.component';
 
 export const routes: Routes = [
   { path: 'books', component: BookListComponent },
+  { path: 'books/new', component: BookEditComponent },
+  { path: 'books/edit/:id', component: BookEditComponent },
   { path: 'books/:id', component: BookDetailComponent },
   { path: 'authors', component: AuthorListComponent },
   { path: 'authors/:id', component: AuthorDetailComponent },
   { path: 'publishers', component: PublisherListComponent },
   { path: 'publishers/:id', component: PublisherDetailComponent },
-  { path: '**', component: NotFoundPageComponent},
+  { path: 'users', component: UserListComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'not-found', component: NotFoundPageComponent },
+  { path: '**', component: NotFoundPageComponent },
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environment/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,5 +19,19 @@ export class BookService {
   getBookById(id: string | number) {
     console.log('Getting book from ', this.url + '/' + id);
     return this.http.get(this.url + '/' + id);
+  }
+
+  createBook(bookData: any): Observable<any> {
+    return this.http.post(this.url, bookData);
+  }
+
+  updateBook(id: string | number, bookData: any): Observable<any> {
+    console.log('Sending this data: ', bookData);
+    return this.http.put(`${this.url}/${id}`, bookData);
+  }
+
+  deleteBook(id: number): Observable<any> {
+    // throw new Error('Method not implemented.');
+    return this.http.delete(`${this.url}/${id}`);
   }
 }

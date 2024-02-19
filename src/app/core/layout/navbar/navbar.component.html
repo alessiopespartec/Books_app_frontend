@@ -1,7 +1,20 @@
 <nav class="navbar">
-  <div class="container d-flex align-items-center justify-content-start">
-    <div class="nav-item-custom"><a href="/books">Books</a></div>
-    <div class="nav-item-custom"><a href="/authors">Authors</a></div>
-    <div class="nav-item-custom"><a href="/publishers">Publishers</a></div>
+  <div class="container d-flex align-items-center justify-space-between">
+    <div class="d-flex align-items-center justify-content-start">
+      <div class="nav-item-custom"><a href="/books">Books</a></div>
+      <div class="nav-item-custom"><a href="/authors">Authors</a></div>
+      <div class="nav-item-custom"><a href="/publishers">Publishers</a></div>
+      <div class="nav-item-custom"><a href="/users">Users</a></div>
+    </div>
+
+    @if (!isLoggedIn) {
+    <div class="nav-item-custom">
+      <a class="nav-link" href="/login">Login</a>
+    </div>
+    } @else {
+    <div class="nav-item-custom">
+      <a href="/" class="nav-link" (click)="logout()">Logout</a>
+    </div>
+    }
   </div>
 </nav>
