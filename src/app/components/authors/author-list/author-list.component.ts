@@ -9,6 +9,9 @@ import { AuthorService } from '../../../core/services/author.service';
 export class AuthorListComponent implements OnInit {
   data: any;
 
+  showError: boolean = false;
+  errorMessage: string = '';
+
   constructor(private service: AuthorService) {}
 
   ngOnInit(): void {
@@ -31,10 +34,24 @@ export class AuthorListComponent implements OnInit {
           console.log(res);
           window.location.reload();
         },
-        error: (err: {}) => {
+        error: (err: any) => {
           console.error('Ops, error deleting author: ', err);
+          this.errorMessage = err.error.message || 'An unknown error occurred';
+          this.showError = true;
+          this.hideErrorAfterDelay();
         },
       });
     }
+  }
+
+  closeAlert() {
+    this.showError = false;
+  }
+
+  private hideErrorAfterDelay(delay: number = 5000): void {
+    // 5000 milliseconds = 5 seconds
+    setTimeout(() => {
+      this.showError = false;
+    }, delay);
   }
 }
