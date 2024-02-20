@@ -10,6 +10,7 @@ import { PublisherDetailComponent } from './components/publishers/publisher-deta
 import { LoginComponent } from './components/login/login.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { BookEditComponent } from './components/books/book-edit/book-edit.component';
+import { AuthorEditComponent } from './components/authors/author-edit/author-edit.component';
 
 export const routes: Routes = [
   { path: 'books', component: BookListComponent },
@@ -17,6 +18,8 @@ export const routes: Routes = [
   { path: 'books/edit/:id', component: BookEditComponent },
   { path: 'books/:id', component: BookDetailComponent },
   { path: 'authors', component: AuthorListComponent },
+  { path: 'authors/new', component: AuthorEditComponent },
+  { path: 'authors/edit/:id', component: AuthorEditComponent },
   { path: 'authors/:id', component: AuthorDetailComponent },
   { path: 'publishers', component: PublisherListComponent },
   { path: 'publishers/:id', component: PublisherDetailComponent },

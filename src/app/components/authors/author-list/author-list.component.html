@@ -2,7 +2,9 @@
   <div class="col-12">
     <h2 class="mb-3">Author List</h2>
     <div class="mb-3 d-flex justify-content-start">
-      <button class="btn btn-outline-primary btn-sm">Add a new Author</button>
+      <a class="btn btn-outline-primary btn-sm" href="/authors/new"
+        >Add a new Author</a
+      >
     </div>
     @if (data.data; as authors) {
     <table class="table table-hover">
@@ -35,24 +37,22 @@
           </td>
           <td>
             <div class="d-flex justify-content-start">
-              <a href="#">
-                <button
-                  class="btn btn-primary btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
+              <a
+                class="btn btn-primary btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
+                href="/authors/edit/{{ author.id }}"
+              >
+                <span class="material-icons" style="font-size: 1.3rem"
+                  >edit</span
                 >
-                  <span class="material-icons" style="font-size: 1.3rem"
-                    >edit</span
-                  >
-                </button>
               </a>
-              <a href="#">
-                <button
-                  class="btn btn-danger btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
+              <button
+                class="btn btn-danger btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
+                (click)="onDeleteClick(author.id)"
+              >
+                <span class="material-icons" style="font-size: 1.3rem"
+                  >delete</span
                 >
-                  <span class="material-icons" style="font-size: 1.3rem"
-                    >delete</span
-                  >
-                </button>
-              </a>
+              </button>
             </div>
           </td>
         </tr>

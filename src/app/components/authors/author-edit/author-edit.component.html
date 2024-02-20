@@ -1,0 +1,57 @@
+<div class="container mt-3">
+  <h2>{{ authorId ? "Edit" : "New" }} Author</h2>
+  <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input
+        type="text"
+        id="firstName"
+        class="form-control"
+        formControlName="firstName"
+        [ngClass]="{
+          'is-invalid':
+            authorForm.get('firstName')!.touched &&
+            authorForm.get('firstName')!.invalid
+        }"
+        required
+      />
+      <div
+        *ngIf="
+          authorForm.get('firstName')!.touched &&
+          authorForm.get('firstName')!.invalid
+        "
+        class="invalid-feedback"
+      >
+        First name is required.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input
+        type="text"
+        id="lastName"
+        class="form-control"
+        formControlName="lastName"
+        [ngClass]="{
+          'is-invalid':
+            authorForm.get('lastName')!.touched &&
+            authorForm.get('lastName')!.invalid
+        }"
+        required
+      />
+      <div
+        *ngIf="
+          authorForm.get('lastName')!.touched &&
+          authorForm.get('lastName')!.invalid
+        "
+        class="invalid-feedback"
+      >
+        Last name is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      {{ authorId ? "Edit" : "Create" }}
+    </button>
+  </form>
+</div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../../core/services/book.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
@@ -10,7 +9,7 @@ import { Router } from '@angular/router';
 export class BookListComponent implements OnInit {
   data: any;
 
-  constructor(private router: Router, private service: BookService) {}
+  constructor(private service: BookService) {}
 
   ngOnInit(): void {
     this.service.getAllBooks().subscribe({
@@ -22,10 +21,6 @@ export class BookListComponent implements OnInit {
         console.log('Error here: ', err);
       },
     });
-  }
-
-  navigateToAddBookPage() {
-    console.log('To Add Book Page clicked!');
   }
 
   onDeleteClick(id: number) {

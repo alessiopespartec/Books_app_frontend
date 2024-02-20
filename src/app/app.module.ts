@@ -28,6 +28,8 @@ import { PublisherDetailComponent } from './components/publishers/publisher-deta
 import { LoginComponent } from './components/login/login.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { BookEditComponent } from './components/books/book-edit/book-edit.component';
+import { AuthorEditComponent } from './components/authors/author-edit/author-edit.component';
+import { PublisherEditComponent } from './components/publishers/publisher-edit/publisher-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { BookEditComponent } from './components/books/book-edit/book-edit.compon
     LoginComponent,
     UserListComponent,
     BookEditComponent,
+    AuthorEditComponent,
+    PublisherEditComponent,
   ],
   imports: [
     BrowserModule,

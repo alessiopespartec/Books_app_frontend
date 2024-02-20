@@ -22,4 +22,19 @@ export class AuthorListComponent implements OnInit {
       },
     });
   }
+
+  onDeleteClick(id: number) {
+    if (window.confirm('Do you really want to delete this author?')) {
+      this.service.deleteAuthor(id).subscribe({
+        next: (res: {}) => {
+          console.log(`Author with ID ${id} deleted successfully!`);
+          console.log(res);
+          window.location.reload();
+        },
+        error: (err: {}) => {
+          console.error('Ops, error deleting author: ', err);
+        },
+      });
+    }
+  }
 }

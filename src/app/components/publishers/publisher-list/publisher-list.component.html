@@ -2,9 +2,9 @@
   <div class="col-12">
     <h2 class="mb-3">Publisher List</h2>
     <div class="mb-3 d-flex justify-content-start">
-      <button class="btn btn-outline-primary btn-sm">
+      <a class="btn btn-outline-primary btn-sm" href="/publishers/new">
         Add a new Publisher
-      </button>
+      </a>
     </div>
     @if (data.data; as publishers) {
     <table class="table table-hover">
@@ -13,6 +13,7 @@
           <th scope="col">ID</th>
           <th scope="col">Name</th>
           <th scope="col">Books</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -25,8 +26,8 @@
             </a>
           </td>
           <td>
-            @if (publisher.books.length > 0) { @for (book of publisher.books; track
-            book.id) {
+            @if (publisher.books.length > 0) { @for (book of publisher.books;
+            track book.id) {
             <ul>
               <li>
                 <a class="book-name" href="/books/{{ book.id }}">{{
@@ -34,21 +35,42 @@
                 }}</a>
                 <span> ({{ book.year | date : "yyyy" }}) </span>
                 @if (book.authors.length > 0) {
-                    <span>by </span>
-                    @for (author of book.authors; track author.id; let isLast = $last) {
-                        <a class="author-name">{{author.firstName}} {{author.lastName}}</a>
-                        @if (!isLast) {
-                            <span>, </span>
-                        } @else {
-                            <span>.</span>
-                        }
-                    }
-                }
+                <span>by </span>
+                @for (author of book.authors; track author.id; let isLast =
+                $last) {
+                <a class="author-name"
+                  >{{ author.firstName }} {{ author.lastName }}</a
+                >
+                @if (!isLast) {
+                <span>, </span>
+                } @else {
+                <span>.</span>
+                } } }
               </li>
             </ul>
             } } @else {
             <span class="text-muted">---</span>
             }
+          </td>
+          <td>
+            <div class="d-flex justify-content-start">
+              <a
+                class="btn btn-primary btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
+                href="/publishers/edit/{{ publisher.id }}"
+              >
+                <span class="material-icons" style="font-size: 1.3rem"
+                  >edit</span
+                >
+              </a>
+              <button
+                class="btn btn-danger btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
+                (click)="onDeleteClick(publisher.id)"
+              >
+                <span class="material-icons" style="font-size: 1.3rem"
+                  >delete</span
+                >
+              </button>
+            </div>
           </td>
         </tr>
         }
