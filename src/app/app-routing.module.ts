@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { BookEditComponent } from './components/books/book-edit/book-edit.component';
 import { AuthorEditComponent } from './components/authors/author-edit/author-edit.component';
+import { PublisherEditComponent } from './components/publishers/publisher-edit/publisher-edit.component';
 
 export const routes: Routes = [
   { path: 'books', component: BookListComponent },
@@ -22,6 +23,8 @@ export const routes: Routes = [
   { path: 'authors/edit/:id', component: AuthorEditComponent },
   { path: 'authors/:id', component: AuthorDetailComponent },
   { path: 'publishers', component: PublisherListComponent },
+  { path: 'publishers/new', component: PublisherEditComponent },
+  { path: 'publishers/edit/:id', component: PublisherEditComponent },
   { path: 'publishers/:id', component: PublisherDetailComponent },
   { path: 'users', component: UserListComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
