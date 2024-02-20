@@ -3,13 +3,21 @@
   <h2>{{ bookId ? "Edit" : "New" }} Book</h2>
   <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-      <label for="title" class="form-label">TItle</label>
+      <label for="title" class="form-label">Title</label>
       <input
         type="text"
         id="title"
         class="form-control"
         formControlName="title"
+        [ngClass]="{
+          'is-invalid':
+            bookForm.get('title')!.touched && bookForm.get('title')!.invalid
+        }"
+        required
       />
+      @if (bookForm.get('title')!.touched && bookForm.get('title')!.invalid) {
+      <div class="invalid-feedback">Title is required.</div>
+      }
     </div>
     <div class="mb-3">
       <label for="year" class="form-label">Year</label>
@@ -18,29 +26,62 @@
         id="year"
         class="form-control"
         formControlName="year"
+        [ngClass]="{
+          'is-invalid':
+            bookForm.get('year')!.touched && bookForm.get('year')!.invalid
+        }"
+        required
       />
+      @if (bookForm.get('year')!.touched && bookForm.get('year')!.invalid) {
+      <div class="invalid-feedback">Year is required.</div>
+      }
     </div>
 
     <!-- Authors -->
     <div class="mb-3">
       <label class="form-label">Author</label>
-      <select multiple class="form-select" formControlName="authorIds">
+      <select
+        multiple
+        class="form-select"
+        formControlName="authorIds"
+        [ngClass]="{
+          'is-invalid':
+            bookForm.get('authorIds')!.touched &&
+            bookForm.get('authorIds')!.invalid
+        }"
+      >
         @for (author of authorsList; track author.id) {
         <option [value]="author.id">
           {{ author.firstName }} {{ author.lastName }}
         </option>
         }
       </select>
+      @if (bookForm.get('authorIds')!.touched &&
+      bookForm.get('authorIds')!.invalid) {
+      <div class="invalid-feedback">At least one author is required.</div>
+      }
     </div>
 
     <!-- Publisher -->
     <div class="mb-3">
       <label class="form-label">Publisher</label>
-      <select class="form-select" formControlName="publisherId">
+      <select
+        class="form-select"
+        formControlName="publisherId"
+        [ngClass]="{
+          'is-invalid':
+            bookForm.get('publisherId')!.touched &&
+            bookForm.get('publisherId')!.invalid
+        }"
+      >
         <option *ngFor="let publisher of publishersList" [value]="publisher.id">
           {{ publisher.name }}
         </option>
       </select>
+      @if (bookForm.get('publisherId')!.touched &&
+      bookForm.get('publisherId')!.invalid) {
+      <div class="invalid-feedback">A publisher is required.</div>
+      }
     </div>
 
     <button type="submit" class="btn btn-primary">

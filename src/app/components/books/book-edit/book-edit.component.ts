@@ -69,6 +69,8 @@ export class BookEditComponent {
   }
 
   onSubmit(): void {
+    this.bookForm.markAllAsTouched();
+
     if (this.bookForm.valid) {
       const formValue = this.bookForm.value;
 
