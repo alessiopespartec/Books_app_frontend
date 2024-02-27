@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log('Login Form Data', this.loginForm.value);
-
+    /*
     if (this.loginForm.valid) {
       this.service
         .login(this.loginForm.value.email, this.loginForm.value.password)
@@ -46,5 +46,6 @@ export class LoginComponent implements OnInit {
           },
         });
     }
+    */
   }
 }

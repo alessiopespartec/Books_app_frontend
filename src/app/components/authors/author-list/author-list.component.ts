@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorService } from '../../../core/services/author.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-author-list',
@@ -12,7 +13,10 @@ export class AuthorListComponent implements OnInit {
   showError: boolean = false;
   errorMessage: string = '';
 
-  constructor(private service: AuthorService) {}
+  constructor(
+    public authService: AuthService,
+    private service: AuthorService
+  ) {}
 
   ngOnInit(): void {
     this.service.getAllAuthors().subscribe({

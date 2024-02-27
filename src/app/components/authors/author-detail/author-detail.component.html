@@ -10,8 +10,7 @@
       <li>
         <a class="book-name" href="/books/{{ book.id }}"> {{ book.title }}</a>
         ({{ book.year | date : "yyyy" }}) &copy;
-        <a class="publisher-name" href="/publishers/{{ book.publisher.id }}"
-          >{{ book.publisher.name }}
+        <a class="publisher-name" href="/publishers/{{ book.publisher.id }}">{{ book.publisher.name }}
         </a>
       </li>
       }

@@ -36,5 +36,4 @@ export class BookService {
   }
 }
 
-// TODO: Mettere nel toast il messaggio di "Accesso Negato"
 // TODO: Non mostrare gli elementi/pagine per gli utenti che non hanno lo scope adatto.
