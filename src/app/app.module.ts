@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import {
   BrowserModule,
   provideClientHydration,
@@ -30,6 +30,9 @@ import { UserListComponent } from './components/users/user-list/user-list.compon
 import { BookEditComponent } from './components/books/book-edit/book-edit.component';
 import { AuthorEditComponent } from './components/authors/author-edit/author-edit.component';
 import { PublisherEditComponent } from './components/publishers/publisher-edit/publisher-edit.component';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializeKeycloak } from './init/keycloak-init.factory';
+import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,7 @@ import { PublisherEditComponent } from './components/publishers/publisher-edit/p
     BookEditComponent,
     AuthorEditComponent,
     PublisherEditComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,10 +58,22 @@ import { PublisherEditComponent } from './components/publishers/publisher-edit/p
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
+    KeycloakAngularModule,
   ],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
     provideClientHydration(),
-    provideHttpClient(withInterceptors([AuthInterceptor])),
+    // provideHttpClient(withInterceptors([AuthInterceptor])),
   ],
   bootstrap: [AppComponent],
 })

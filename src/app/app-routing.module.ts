@@ -12,6 +12,7 @@ import { UserListComponent } from './components/users/user-list/user-list.compon
 import { BookEditComponent } from './components/books/book-edit/book-edit.component';
 import { AuthorEditComponent } from './components/authors/author-edit/author-edit.component';
 import { PublisherEditComponent } from './components/publishers/publisher-edit/publisher-edit.component';
+import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
 
 export const routes: Routes = [
   { path: 'books', component: BookListComponent },
@@ -27,8 +28,9 @@ export const routes: Routes = [
   { path: 'publishers/edit/:id', component: PublisherEditComponent },
   { path: 'publishers/:id', component: PublisherDetailComponent },
   { path: 'users', component: UserListComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'myprofile', component: UserDetailComponent },
+  //{ path: '', redirectTo: 'login', pathMatch: 'full' },
+  //{ path: 'login', component: LoginComponent },
   { path: 'not-found', component: NotFoundPageComponent },
   { path: '**', component: NotFoundPageComponent },
 ];

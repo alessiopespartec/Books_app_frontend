@@ -9,6 +9,9 @@ import { BookService } from '../../../core/services/book.service';
 export class BookListComponent implements OnInit {
   data: any;
 
+  showError: boolean = false;
+  errorMessage: string = '';
+
   constructor(private service: BookService) {}
 
   ngOnInit(): void {
@@ -32,10 +35,16 @@ export class BookListComponent implements OnInit {
           console.log(res);
           window.location.reload();
         },
-        error: (err: {}) => {
+        error: (err: any) => {
           console.error('Ops, error deleting book: ', err);
+          this.errorMessage = err.error.message || 'An unknown error occurred';
+          this.showError = true;
         },
       });
     }
+  }
+
+  closeAlert() {
+    this.showError = false;
   }
 }

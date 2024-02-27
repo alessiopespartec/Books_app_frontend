@@ -2,17 +2,15 @@
   background-color: rgb(61, 61, 61);
 }
 
-.nav-item-custom > a {
+.nav-item-custom > a,
+.nav-item-custom > span {
   text-decoration: none;
   color: lightgray;
-}
-
-.nav-item-custom {
   margin: 0.2rem 0.4rem;
   padding: 0.2rem 0.5rem;
 }
 
-.nav-item-custom:hover {
+.nav-item-custom a:hover {
   cursor: pointer;
   filter: brightness(0.95);
   background-color: rgb(80, 79, 79);

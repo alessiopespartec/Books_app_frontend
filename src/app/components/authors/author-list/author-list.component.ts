@@ -38,7 +38,6 @@ export class AuthorListComponent implements OnInit {
           console.error('Ops, error deleting author: ', err);
           this.errorMessage = err.error.message || 'An unknown error occurred';
           this.showError = true;
-          this.hideErrorAfterDelay();
         },
       });
     }
@@ -46,12 +45,5 @@ export class AuthorListComponent implements OnInit {
 
   closeAlert() {
     this.showError = false;
-  }
-
-  private hideErrorAfterDelay(delay: number = 5000): void {
-    // 5000 milliseconds = 5 seconds
-    setTimeout(() => {
-      this.showError = false;
-    }, delay);
   }
 }
