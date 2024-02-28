@@ -14,9 +14,12 @@
 <div class="row">
   <div class="col-12">
     <h2 class="mb-3">Author List</h2>
+    @if (authService.hasScope('authors_create')) {
+
     <div class="mb-3 d-flex justify-content-start">
       <a class="btn btn-outline-primary btn-sm" href="/authors/new">Add a new Author</a>
     </div>
+    }
     @if (data.data; as authors) {
     <table class="table table-hover">
       <thead>
@@ -24,7 +27,9 @@
           <th scope="col">ID</th>
           <th scope="col">Name</th>
           <th scope="col">Books</th>
+          @if (authService.hasScope('authors_update') || authService.hasScope('authors_delete')) {
           <th scope="col">Actions</th>
+          }
         </tr>
       </thead>
 
@@ -44,18 +49,21 @@
             <span>, </span>
             } }
           </td>
-          @if (authService.hasScope('authors_edit') || authService.hasScope('authors_delete')) {
+          @if (authService.hasScope('authors_update') || authService.hasScope('authors_delete')) {
           <td>
             <div class="d-flex justify-content-start">
+              @if (authService.hasScope('authors_update')) {
               <a class="btn btn-primary btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
                 href="/authors/edit/{{ author.id }}">
                 <span class="material-icons" style="font-size: 1.3rem">edit</span>
               </a>
+              } @if (authService.hasScope('authors_delete')) {
               <button
                 class="btn btn-danger btn-sm d-flex justify-content-center align-items-center m-1 p-2 rounded-circle"
                 (click)="onDeleteClick(author.id)">
                 <span class="material-icons" style="font-size: 1.3rem">delete</span>
               </button>
+              }
             </div>
           </td>
           }

@@ -35,5 +35,3 @@ export class BookService {
     return this.http.delete(`${this.url}/${id}`);
   }
 }
-
-// TODO: Non mostrare gli elementi/pagine per gli utenti che non hanno lo scope adatto.

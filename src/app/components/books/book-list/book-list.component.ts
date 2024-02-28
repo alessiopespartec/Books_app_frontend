@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../../core/services/book.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-book-list',
@@ -12,7 +13,7 @@ export class BookListComponent implements OnInit {
   showError: boolean = false;
   errorMessage: string = '';
 
-  constructor(private service: BookService) {}
+  constructor(public authService: AuthService, private service: BookService) {}
 
   ngOnInit(): void {
     this.service.getAllBooks().subscribe({

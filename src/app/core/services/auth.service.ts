@@ -25,15 +25,13 @@ export class AuthService {
   }
   */
 
-  // Recupera gli scope dall'utente autenticato
-  getUserScopes(): string[] {
-    const tokenPayload = this.keycloakService.getKeycloakInstance().tokenParsed;
-    return tokenPayload ? tokenPayload['scope'].split(' ') : [];
-  }
-
-  // Verifica se l'utente ha uno specifico scope
   hasScope(requiredScope: string): boolean {
     const userScopes = this.getUserScopes();
     return userScopes.includes(requiredScope);
+  }
+
+  getUserScopes(): string[] {
+    const tokenPayload = this.keycloakService.getKeycloakInstance().tokenParsed;
+    return tokenPayload ? tokenPayload['scope'].split(' ') : [];
   }
 }

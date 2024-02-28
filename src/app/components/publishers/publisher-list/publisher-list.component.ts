@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublisherService } from '../../../core/services/publisher.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-publisher-list',
@@ -12,7 +13,10 @@ export class PublisherListComponent implements OnInit {
   showError: boolean = false;
   errorMessage: string = '';
 
-  constructor(private service: PublisherService) {}
+  constructor(
+    public authService: AuthService,
+    private service: PublisherService
+  ) {}
 
   ngOnInit(): void {
     this.service.getAllPublishers().subscribe({
