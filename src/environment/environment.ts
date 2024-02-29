@@ -5,3 +5,9 @@ export const environment = {
     password: 'password123',
   },
 };
+
+export const keycloakEnv = {
+  realm: 'myrealm',
+  clientId: 'frontend',
+  baseUrl: 'http://localhost:8080',
+};

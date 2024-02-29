@@ -37,7 +37,11 @@
     } @else {
     <div class="alert alert-success" role="alert">
       <h4 class="alert-heading">Ops..!</h4>
+      @if (data.error.message && data.error.status) {
+      <p>Error {{ data.error.status }}! {{ data.error.message }}</p>
+      } @else {
       <p>Error {{ data.status }}! {{ data.message }}</p>
+      }
     </div>
     }
   </div>

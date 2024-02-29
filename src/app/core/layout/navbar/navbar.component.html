@@ -4,7 +4,9 @@
       <div class="nav-item-custom"><a href="/books">Books</a></div>
       <div class="nav-item-custom"><a href="/authors">Authors</a></div>
       <div class="nav-item-custom"><a href="/publishers">Publishers</a></div>
+      @if (isAdmin) {
       <div class="nav-item-custom"><a href="/users">Users</a></div>
+      }
     </div>
 
     @if (isLoggedIn) {

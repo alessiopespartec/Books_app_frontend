@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environment/environment';
+import { keycloakEnv } from '../../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private url: string = environment.apiBaseUrl + '/users';
+  private url: string =
+    keycloakEnv.baseUrl + '/admin/realms/' + keycloakEnv.realm + '/users';
 
   constructor(private http: HttpClient) {}
 

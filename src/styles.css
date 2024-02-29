@@ -5,7 +5,8 @@ a {
 }
 .book-name,
 .author-name,
-.publisher-name {
+.publisher-name,
+.user-name {
   cursor: pointer;
   color: inherit;
   text-decoration: none;
@@ -13,7 +14,8 @@ a {
 
 .book-name:hover,
 .author-name:hover,
-.publisher-name:hover {
+.publisher-name:hover,
+.user-name:hover {
   text-decoration: underline;
 }
 

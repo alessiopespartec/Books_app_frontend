@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-12">
+    @if (userName) {
+    <div class="mb-2"><strong>Username:</strong> {{ userName }}</div>
+    } @if (firstName) {
+    <div class="mb-2"><strong>First Name:</strong> {{ firstName }}</div>
+    } @if (lastName) {
+    <div class="mb-2"><strong>Last Name:</strong> {{ lastName }}</div>
+    } @if (roles && roles.length > 0) {
+    <strong>Roles:</strong>
+    <ul>
+      @for (role of roles; track $index) {
+      <li>{{ role }}</li>
+      }
+    </ul>
+    } @if (scopes && scopes.length > 0) {
+    <strong>Scopes:</strong>
+    <ul>
+      @for (scope of scopes; track $index) {
+      <li>
+        {{ scope }}
+      </li>
+      }
+    </ul>
+    }
+  </div>
+</div>

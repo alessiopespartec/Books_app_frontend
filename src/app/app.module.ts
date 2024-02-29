@@ -33,6 +33,7 @@ import { PublisherEditComponent } from './components/publishers/publisher-edit/p
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './init/keycloak-init.factory';
 import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
+import { MyProfileComponent } from './components/users/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { UserDetailComponent } from './components/users/user-detail/user-detail.
     AuthorEditComponent,
     PublisherEditComponent,
     UserDetailComponent,
+    MyProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,18 +1,25 @@
 <div class="row">
   <div class="col-12">
-    @if (userName) {
-    <div class="mb-2"><strong>Username:</strong> {{ userName }}</div>
-    } @if (firstName) {
-    <div class="mb-2"><strong>First Name:</strong> {{ firstName }}</div>
-    } @if (lastName) {
-    <div class="mb-2"><strong>Last Name:</strong> {{ lastName }}</div>
-    } @if (roles && roles.length > 0) {
-    <strong>Roles:</strong>
-    <ul>
-      @for (role of roles; track $index) {
-      <li>{{ role }}</li>
-      }
-    </ul>
+    @if (data && data[0]; as data) {
+    <h3 class="mb-3">User Details</h3>
+    <hr />
+    <p><b>ID:</b> {{ data.id }}</p>
+    <p>
+      <b>Created Timestamp:</b>
+      {{ data.createdTimestamp | date : "medium" }}
+    </p>
+    <p><b>Username:</b> {{ data.username }}</p>
+    <p><b>Enabled:</b> {{ data.enabled ? "Yes" : "No" }}</p>
+    <p><b>TOTP Enabled:</b> {{ data.totp ? "Yes" : "No" }}</p>
+    <p><b>Email Verified:</b> {{ data.emailVerified ? "Yes" : "No" }}</p>
+    <p>
+      <b>Manage Group Membership:</b>
+      {{ data.access.manageGroupMembership ? "Yes" : "No" }}
+    </p>
+    <p><b>View:</b> {{ data.access.view ? "Yes" : "No" }}</p>
+    <p><b>Map Roles:</b> {{ data.access.mapRoles ? "Yes" : "No" }}</p>
+    <p><b>Impersonate:</b> {{ data.access.impersonate ? "Yes" : "No" }}</p>
+    <p><b>Manage:</b> {{ data.access.manage ? "Yes" : "No" }}</p>
     }
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { KeycloakService } from 'keycloak-angular';
+import { keycloakEnv } from '../../environment/environment';
 
 export function initializeKeycloak(keycloak: KeycloakService) {
   return () => {
@@ -9,8 +10,8 @@ export function initializeKeycloak(keycloak: KeycloakService) {
         .init({
           config: {
             url: 'http://localhost:8080',
-            realm: 'myrealm',
-            clientId: 'frontend-client',
+            realm: keycloakEnv.realm,
+            clientId: keycloakEnv.clientId,
           },
           initOptions: {
             onLoad: 'login-required',
