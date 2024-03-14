@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
+import { forkJoin, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-list',
@@ -22,5 +24,7 @@ export class UserListComponent implements OnInit {
         console.error('Error here: ', err);
       },
     });
+
+    // Implementare il match dei ruoli con gli ID
   }
 }
